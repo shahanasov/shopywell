@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
-import 'package:shopywell/screens/home/main_screen.dart';
+import 'package:shopywell/screens/home/root_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});

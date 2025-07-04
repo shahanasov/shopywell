@@ -6,14 +6,14 @@ final ThemeData appTheme = ThemeData(
     seedColor: AppColors.softWhite,
     surfaceTint: AppColors.accentPink,
   ),
-  scaffoldBackgroundColor: AppColors.primaryWhite,
+  scaffoldBackgroundColor: AppColors.softWhite,
   primaryColor: AppColors.primaryRed,
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.primaryPink,
     elevation: 0,
     iconTheme: IconThemeData(color: AppColors.softWhite),
     titleTextStyle: TextStyle(
-      color: AppColors.softWhite,
+      color: AppColors.textPrimary,
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),

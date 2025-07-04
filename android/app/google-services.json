@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "35346559617",
+    "project_id": "shopywell-d1d5e",
+    "storage_bucket": "shopywell-d1d5e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35346559617:android:6a1d9e03b4e814c00f5380",
+        "android_client_info": {
+          "package_name": "com.example.shopywell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35346559617-6a2tso2232ga98ob4mgeemv2a301ccku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmv8QD2okKK7_vCPD_NmgLwCHlx5dKU9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35346559617-6a2tso2232ga98ob4mgeemv2a301ccku.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "35346559617-9r7l6plldnvpek3k7nivj1kkns5r2hj2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shopywell"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

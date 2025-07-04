@@ -17,16 +17,16 @@ class CustomBottomNav extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(ref, icon: Icons.home, label: 'Home', index: 0),
-            _buildNavItem(
+            buildNavItem(ref, icon: Icons.home, label: 'Home', index: 0),
+            buildNavItem(
               ref,
               icon: Icons.favorite_border,
               label: 'Wishlist',
               index: 1,
             ),
             SizedBox(),
-            _buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
-            _buildNavItem(
+            buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
+            buildNavItem(
               ref,
               icon: Icons.settings,
               label: 'Setting',
@@ -38,7 +38,7 @@ class CustomBottomNav extends ConsumerWidget {
     );
   }
 
-  Widget _buildNavItem(
+  Widget buildNavItem(
     WidgetRef ref, {
     required IconData icon,
     required String label,

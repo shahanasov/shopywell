@@ -13,51 +13,67 @@ class OfferCarousel extends ConsumerWidget {
     required String discountText,
   }) {
     return Container(
+      
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
+        
         color: bgColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
         children: [
           // Image part
-          Image.asset(imagePath, height: 120,width: 10,),
+          Image.asset(imagePath,),
           // Text part
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(discountText,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: 200,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    discountText,
                     style: const TextStyle(
                       fontSize: 24,
                       color: AppColors.primaryWhite,
                       fontWeight: FontWeight.bold,
-                    )),
-                const SizedBox(height: 6),
-                const Text("Now in (product)\nAll colours",
-                    style: TextStyle(fontSize: 14, color: Colors.white)),
-                const SizedBox(height: 12),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: AppColors.primaryWhite),
+                    ),
                   ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Shop Now", style: TextStyle(color: AppColors.primaryWhite)),
-                      SizedBox(width: 4),
-                      Icon(Icons.arrow_forward, color: AppColors.primaryWhite, size: 16),
-                    ],
+                  const SizedBox(height: 6),
+                  const Text(
+                    "Now in (product)\nAll colours",
+                    style: TextStyle(fontSize: 14, color: Colors.white),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 12),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: AppColors.primaryWhite),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Shop Now",
+                          style: TextStyle(color: AppColors.primaryWhite),
+                        ),
+                        SizedBox(width: 4),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: AppColors.primaryWhite,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(width: 16),
-          
         ],
       ),
     );
@@ -81,7 +97,7 @@ class OfferCarousel extends ConsumerWidget {
       buildBanner(
         imagePath: 'assets/images/womanwithshoppingbag.jpg',
         bgColor: Colors.teal,
-        discountText: 'Up to 60% OFF',
+        discountText: '50-40% OFF',
       ),
     ];
 
@@ -90,7 +106,7 @@ class OfferCarousel extends ConsumerWidget {
         CarouselSlider(
           items: banners,
           options: CarouselOptions(
-            height: 175,
+            height: 230,
             autoPlay: true,
             enlargeCenterPage: true,
             viewportFraction: 1,

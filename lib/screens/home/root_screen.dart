@@ -26,6 +26,7 @@ class RootScreen extends ConsumerWidget {
       body: screens[index],
       floatingActionButton:
        FloatingActionButton(
+        
         onPressed: () => ref.read(currentIndexProvider.notifier).state = 2,
         backgroundColor: AppColors.primaryWhite,
         shape: const CircleBorder(),
