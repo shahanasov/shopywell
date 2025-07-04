@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shopywell/config/registe_provider.dart';
+import 'package:shopywell/core/widgets/custom_text_field.dart';
+import 'package:shopywell/core/widgets/social_sign_button.dart';
+
+class SignUpScreen extends ConsumerWidget {
+  const SignUpScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final obscurePassword = ref.watch(regObscurePasswordProvider);
+    final obscureConfirm = ref.watch(regObscureConfirmProvider);
+
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: ListView(
+            children: [
+              const SizedBox(height: 30),
+              Text(
+                "Create an\naccount",
+                style: GoogleFonts.montserrat(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              CustomTextField(
+                icon: Icons.person,
+                hint: "Username or Email",
+                onChanged: (val) =>
+                    ref.read(regEmailProvider.notifier).state = val,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                icon: Icons.lock,
+                hint: "Password",
+                isPassword: true,
+                obscureText: obscurePassword,
+                onVisibilityToggle: () {
+                  ref.read(regObscurePasswordProvider.notifier).state =
+                      !obscurePassword;
+                },
+                onChanged: (val) =>
+                    ref.read(regPasswordProvider.notifier).state = val,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                icon: Icons.lock,
+                hint: "ConfirmPassword",
+                isPassword: true,
+                obscureText: obscureConfirm,
+                onVisibilityToggle: () {
+                  ref.read(regObscureConfirmProvider.notifier).state =
+                      !obscureConfirm;
+                },
+                onChanged: (val) =>
+                    ref.read(regConfirmPasswordProvider.notifier).state = val,
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'By clicking the ',
+                    children: [
+                      TextSpan(
+                        text: 'Register',
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                      const TextSpan(
+                        text: ' button, you agree to the public offer',
+                      ),
+                    ],
+                  ),
+                  style: GoogleFonts.montserrat(fontSize: 12),
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  final email = ref.read(regEmailProvider);
+                  final password = ref.read(regPasswordProvider);
+                  final confirm = ref.read(regConfirmPasswordProvider);
+                  print("Register: $email - $password - $confirm");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text("Create Account", style: GoogleFonts.montserrat()),
+              ),
+              const SizedBox(height: 20),
+              const Center(child: Text("- OR Continue with -")),
+              const SizedBox(height: 20),
+              socialbuttons(),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("I Already Have an Account "),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context); // or use Get.back();
+                    },
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
