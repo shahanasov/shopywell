@@ -16,28 +16,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: AppColors.textSecondary,
       appBar: appbar(),
-      // AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   title: SizedBox(
-      //     height: 40,
-      //     child: Image.asset('assets/logo/shopywelllogo.png'),
-      //   ),
-      //   centerTitle: true,
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.menu, color: Colors.black),
-      //     onPressed: () {},
-      //   ),
-      //   actions: const [
-      //     Padding(
-      //       padding: EdgeInsets.only(right: 12),
-      //       child: CircleAvatar(
-      //         // backgroundImage: AssetImage("assets/images/user.jpg"),
-      //       ),
-      //     ),
-      //   ],
-      // ),
 
       body: SingleChildScrollView(
         child: Column(
@@ -49,7 +29,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             // 🏷️ All Featured Title + Buttons
-           FilterTitle(),
+            FilterTitle(),
 
             const SizedBox(height: 16),
 
@@ -72,13 +52,10 @@ class HomeScreen extends StatelessWidget {
             ),
 
             ProductListingPage(),
-            SummerSale(),
-            
+            SummerBanner(),
           ],
         ),
       ),
     );
   }
-
-
 }

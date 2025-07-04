@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final bool isPassword;
   final bool obscureText;
+  // final String text;
   final VoidCallback? onVisibilityToggle;
   final Function(String)? onChanged;
 
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.icon,
     required this.hint,
+    // required this.text,
     this.isPassword = false,
     this.obscureText = false,
     this.onVisibilityToggle,

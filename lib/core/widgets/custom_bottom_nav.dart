@@ -24,7 +24,15 @@ class CustomBottomNav extends ConsumerWidget {
               label: 'Wishlist',
               index: 1,
             ),
-            SizedBox(),
+
+            // to change 
+            Column(
+              children: [
+                CircleAvatar(backgroundColor: AppColors.primaryWhite,radius: 25,
+                  child: buildNavItem(ref, icon: Icons.shopping_cart, label: '', index: 2)),
+                  SizedBox(height: 5,)
+              ],
+            ),
             buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
             buildNavItem(
               ref,

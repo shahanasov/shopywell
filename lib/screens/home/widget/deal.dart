@@ -6,9 +6,15 @@ import 'package:shopywell/screens/home/widget/view_all_button.dart';
 class DealOfTheDayWidget extends StatelessWidget {
   Color? color;
   String? text;
-   String? subtitle;
-   IconData? icon;
-  DealOfTheDayWidget({super.key, this.color, this.text,this.icon,this.subtitle});
+  String? subtitle;
+  IconData? icon;
+  DealOfTheDayWidget({
+    super.key,
+    this.color,
+    this.text,
+    this.icon,
+    this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class DealOfTheDayWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color:color?? AppColors.lightBlue,
+        color: color ?? AppColors.lightBlue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -30,26 +36,36 @@ class DealOfTheDayWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                   text?? 'Deal of the Day',
-                    style: GoogleFonts.montserrat(fontSize: 18,color: AppColors.primaryWhite),
+                  Text(
+                    text ?? 'Deal of the Day',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      color: AppColors.primaryWhite,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Icon(icon?? Icons.alarm,color: AppColors.primaryWhite,size: 20,),
+                  Icon(
+                    icon ?? Icons.alarm,
+                    color: AppColors.primaryWhite,
+                    size: 20,
+                  ),
                   Text(
-                   subtitle?? ' 22h 55m 20s remaining',
+                    subtitle ?? ' 22h 55m 20s remaining',
                     // _formatDuration(remainingTime),
-                    style: GoogleFonts.montserrat(fontSize: 15,color: AppColors.primaryWhite),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 15,
+                      color: AppColors.primaryWhite,
+                    ),
                   ),
                 ],
               ),
             ],
           ),
-        ViewAllButton()
+          ViewAllButton(),
         ],
       ),
     );

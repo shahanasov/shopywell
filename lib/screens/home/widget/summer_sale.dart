@@ -1,33 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:shopywell/core/constants/colors/app_colors.dart';
-import 'package:shopywell/screens/home/widget/view_all_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopywell/screens/home/widget/offer_card.dart';
+import 'package:shopywell/viewmodels/offer_viewmodel.dart';
 
-class SummerSale extends StatelessWidget {
-  const SummerSale({super.key});
+class SummerBanner extends ConsumerWidget {
+  const SummerBanner({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.softWhite,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      height: 400,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final banner = ref.watch(bannerProvider);
+    final offers = ref.watch(offerProvider).offers;
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('assets/images/summersale.png'),
+          Container(
+            width: double.infinity,
+            height: 160,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              image: const DecorationImage(
+                image: AssetImage('assets/images/summersale.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('New Arrivals '),
-                  Text("Summer’ 25 Collections"),
+                  Text(
+                    banner.title,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    banner.subtitle,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
                 ],
               ),
-              ViewAllButton(),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Row(
+                  children: const [
+                    Text('View all'),
+                    Icon(Icons.arrow_right_alt),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Sponsored Text
+          const Text(
+            'Sponsored',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+
+          // Horizontal Scrollable Single OfferCard
+          SizedBox(
+            height: 180,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [OfferCard(imagePath: 'assets/images/shoeoff.png')],
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('up to 50% Off'),
+              Icon(Icons.arrow_forward_ios_outlined, size: 15),
             ],
           ),
         ],

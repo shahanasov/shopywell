@@ -38,7 +38,7 @@ final productsProvider = Provider<List<Product>>((ref) {
       originalPrice: 2499,
       discountPercentage: 40,
       imageUrl:
-          'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=300&h=400&fit=crop',
+          'assets/images/kids.jpg',
       rating: 4.0,
       reviewCount: 56890,
     ),
@@ -50,14 +50,14 @@ final productsProvider = Provider<List<Product>>((ref) {
       originalPrice: 4999,
       discountPercentage: 50,
       imageUrl:
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=400&fit=crop',
+          'assets/images/kids.jpg',
       rating: 4.0,
       reviewCount: 344567,
     ),
   ];
 });
 
-// Product Card Widget (DRY principle)
+
 class ProductCard extends ConsumerWidget {
   final Product product;
 

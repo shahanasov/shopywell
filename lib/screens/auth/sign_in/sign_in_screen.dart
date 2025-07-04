@@ -15,96 +15,102 @@ class SignInScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final obscurePassword = ref.watch(obscurePasswordProvider);
+    final formKey = GlobalKey<FormState>();
+
 
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: ListView(
-            children: [
-              const SizedBox(height: 30),
-              const Text(
-                "Welcome\nBack!",
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30),
-              CustomTextField(
-                icon: Icons.person,
-                hint: "Username or Email",
-                onChanged: (val) =>
-                    ref.read(emailProvider.notifier).state = val,
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                icon: Icons.lock,
-                hint: "Password",
-                isPassword: true,
-                obscureText: obscurePassword,
-                onVisibilityToggle: () {
-                  ref.read(obscurePasswordProvider.notifier).state =
-                      !obscurePassword;
-                },
-                onChanged: (val) =>
-                    ref.read(passwordProvider.notifier).state = val,
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ForgotPasswordScreen(),
-                      ),
-                    );
+          child: Form(
+            key: formKey,
+            child: ListView(
+              children: [
+                const SizedBox(height: 30),
+                const Text(
+                  "Welcome\nBack!",
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                CustomTextField(
+                  
+                  icon: Icons.person,
+                  hint: "Username or Email",
+                  onChanged: (val) =>
+                      ref.read(emailProvider.notifier).state = val,
+                ),
+                const SizedBox(height: 16),
+                CustomTextField(
+                  icon: Icons.lock,
+                  hint: "Password",
+                  isPassword: true,
+                  obscureText: obscurePassword,
+                  onVisibilityToggle: () {
+                    ref.read(obscurePasswordProvider.notifier).state =
+                        !obscurePassword;
                   },
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(color: AppColors.accentRed),
-                  ),
+                  onChanged: (val) =>
+                      ref.read(passwordProvider.notifier).state = val,
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  final email = ref.read(emailProvider);
-                  final password = ref.read(passwordProvider);
-                  print("Login: $email - $password");
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> GetStartedScreen()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.accentRed,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child:  Text("Login", style: GoogleFonts.montserrat()),
-              ),
-              const SizedBox(height: 20),
-              const Center(child: Text("- OR Continue with -")),
-              const SizedBox(height: 20),
-              socialbuttons(),
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Create An Account "),
-                  GestureDetector(
-                    onTap: () {
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => ForgotPasswordScreen(),
+                        ),
                       );
                     },
                     child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        color: AppColors.accentRed,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      "Forgot Password?",
+                      style: TextStyle(color: AppColors.accentRed),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final email = ref.read(emailProvider);
+                    final password = ref.read(passwordProvider);
+                    print("Login: $email - $password");
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> GetStartedScreen()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.accentRed,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child:  Text("Login", style: GoogleFonts.montserrat()),
+                ),
+                const SizedBox(height: 20),
+                const Center(child: Text("- OR Continue with -")),
+                const SizedBox(height: 20),
+                socialbuttons(),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Create An Account "),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => SignUpScreen()),
+                        );
+                      },
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          color: AppColors.accentRed,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

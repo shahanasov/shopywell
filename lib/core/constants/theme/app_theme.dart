@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
 
 final ThemeData appTheme = ThemeData(
@@ -36,17 +37,5 @@ final ThemeData appTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
-  textTheme: const TextTheme(
-    headlineLarge: TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-      color: AppColors.textPrimary,
-    ),
-    titleMedium: TextStyle(
-      fontSize: 18,
-      fontWeight: FontWeight.w600,
-      color: AppColors.textPrimary,
-    ),
-    bodyMedium: TextStyle(fontSize: 16, color: AppColors.textSecondary),
-  ),
+  textTheme:  GoogleFonts.montserratTextTheme(),
 );
