@@ -17,7 +17,7 @@ AppBar appbar(){
           Padding(
             padding: EdgeInsets.only(right: 12),
             child: CircleAvatar(
-              // backgroundImage: AssetImage("assets/images/user.jpg"),
+              backgroundImage: AssetImage("assets/images/avatar.jpg"),
             ),
           ),
         ],

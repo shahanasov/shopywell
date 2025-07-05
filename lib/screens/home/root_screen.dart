@@ -23,21 +23,24 @@ class RootScreen extends ConsumerWidget {
       const SettingsScreen(),
     ];
 
+    final isCartSelected = index == 2;
+    final fabColor = isCartSelected
+        ? AppColors.accentRed
+        : AppColors.primaryWhite;
+    final iconColor = isCartSelected ? Colors.white : Colors.black;
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: screens[index],
-      // floatingActionButton:
-      //  FloatingActionButton(
-        
-      //   onPressed: () => ref.read(currentIndexProvider.notifier).state = 2,
-      //   backgroundColor: AppColors.primaryWhite,
-      //   shape: const CircleBorder(),
-      //   elevation: 6,
-      //   child: const Icon(Icons.shopping_cart, color: Colors.black),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ref.read(currentIndexProvider.notifier).state = 2,
+        backgroundColor: fabColor,
+        shape: const CircleBorder(),
+        elevation: 6,
+        child: Icon(Icons.shopping_cart, color: iconColor),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const CustomBottomNav(),
     );
   }
 }
-
-

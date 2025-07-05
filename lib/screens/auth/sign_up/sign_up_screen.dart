@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/config/registe_provider.dart';
 import 'package:shopywell/core/widgets/custom_text_field.dart';
 import 'package:shopywell/core/widgets/social_sign_button.dart';
+import 'package:shopywell/viewmodels/auth_viewmodel.dart';
 
-class SignUpScreen extends ConsumerWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
     final obscurePassword = ref.watch(regObscurePasswordProvider);
     final obscureConfirm = ref.watch(regObscureConfirmProvider);
 
@@ -86,7 +93,13 @@ class SignUpScreen extends ConsumerWidget {
                   final email = ref.read(regEmailProvider);
                   final password = ref.read(regPasswordProvider);
                   final confirm = ref.read(regConfirmPasswordProvider);
-                  print("Register: $email - $password - $confirm");
+
+                  ref.read(signUpViewModelProvider).signUp(
+                        context: context,
+                        email: email,
+                        password: password,
+                        confirmPassword: confirm,
+                      );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
@@ -108,7 +121,7 @@ class SignUpScreen extends ConsumerWidget {
                   const Text("I Already Have an Account "),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context); // or use Get.back();
+                      Navigator.pop(context);
                     },
                     child: const Text(
                       "Login",

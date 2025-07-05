@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/config/login_provider.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
@@ -9,14 +10,55 @@ import 'package:shopywell/screens/auth/forgot_password/forgot_password_screen.da
 import 'package:shopywell/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:shopywell/screens/onboarding/get_started_screen.dart';
 
-class SignInScreen extends ConsumerWidget {
+class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final obscurePassword = ref.watch(obscurePasswordProvider);
-    final formKey = GlobalKey<FormState>();
+  ConsumerState<SignInScreen> createState() => _SignInScreenState();
+}
 
+class _SignInScreenState extends ConsumerState<SignInScreen> {
+  final formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+
+  Future<void> _signInWithEmailAndPassword() async {
+    final email = ref.read(emailProvider);
+    final password = ref.read(passwordProvider);
+
+    if (!formKey.currentState!.validate()) return;
+
+    try {
+      setState(() => isLoading = true);
+
+      // 🔐 Firebase login
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      // ✅ Success - navigate to GetStartedScreen
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => GetStartedScreen()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      String error = "An error occurred";
+      if (e.code == 'user-not-found') {
+        error = 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        error = 'Wrong password provided.';
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(error)),
+      );
+    } finally {
+      if (mounted) setState(() => isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final obscurePassword = ref.watch(obscurePasswordProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -33,7 +75,6 @@ class SignInScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 30),
                 CustomTextField(
-                  
                   icon: Icons.person,
                   hint: "Username or Email",
                   onChanged: (val) =>
@@ -69,12 +110,7 @@ class SignInScreen extends ConsumerWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    final email = ref.read(emailProvider);
-                    final password = ref.read(passwordProvider);
-                    print("Login: $email - $password");
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> GetStartedScreen()));
-                  },
+                  onPressed: isLoading ? null : _signInWithEmailAndPassword,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.accentRed,
                     padding: const EdgeInsets.symmetric(vertical: 16),
@@ -82,7 +118,9 @@ class SignInScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child:  Text("Login", style: GoogleFonts.montserrat()),
+                  child: isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : Text("Login", style: GoogleFonts.montserrat()),
                 ),
                 const SizedBox(height: 20),
                 const Center(child: Text("- OR Continue with -")),
@@ -96,7 +134,8 @@ class SignInScreen extends ConsumerWidget {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => SignUpScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => SignUpScreen()),
                         );
                       },
                       child: const Text(

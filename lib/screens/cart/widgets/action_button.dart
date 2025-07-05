@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
 import 'package:shopywell/screens/checkout/checkout_screen.dart';
+import 'package:shopywell/screens/profile_page/profile_create_screen.dart';
 
 class ActionButtons extends StatelessWidget {
   const ActionButtons({super.key});
@@ -18,8 +21,30 @@ class ActionButtons extends StatelessWidget {
         ),
         // ⚡ Buy Now
         GestureDetector(
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> CheckoutScreen()));
+          onTap: () async {
+            final userId = FirebaseAuth.instance.currentUser?.uid;
+
+            if (userId == null) return;
+
+            final doc = await FirebaseFirestore.instance
+                .collection('users') // 👈 change to your actual collection name
+                .doc(userId)
+                .get();
+
+            if (doc.exists) {
+              // ✅ User profile exists → Go to next screen
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CheckoutScreen(), // 👈 or any other screen
+                ),
+              );
+            } else {
+              // ❌ User profile does NOT exist → Go to profile creation
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProfileCreateScreen()),
+              );
+            }
           },
           child: BuyNowButton(
             icon: Icons.touch_app,
@@ -84,10 +109,15 @@ class BuyNowButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 170,
+      width: 150,
       height: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+          topRight: Radius.circular(5),
+          bottomRight: Radius.circular(5),
+        ),
         gradient: LinearGradient(
           colors: colors,
           begin: Alignment.topLeft,
@@ -116,22 +146,22 @@ class BuyNowButton extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
+                  color: AppColors.textSecondary,
                   blurRadius: 8,
                   offset: const Offset(-2, 2),
                 ),
               ],
             ),
-            child:  Icon(icon, color: Colors.white, size: 32),
+            child: Icon(icon, color: AppColors.primaryWhite, size: 32),
           ),
           // Text section
           Expanded(
             child: Container(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 5, right: 5),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.primaryWhite,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 1.2,

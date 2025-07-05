@@ -1,4 +1,4 @@
-// ui/screens/product_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopywell/config/product_detail_provider.dart';

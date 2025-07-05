@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:shopywell/core/constants/colors/app_colors.dart';
+import 'package:shopywell/data/services/app_preference.dart';
 import 'package:shopywell/screens/auth/sign_in/sign_in_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -12,6 +14,15 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final introKey = GlobalKey<IntroductionScreenState>();
   int currentPage = 0;
+
+  void completeOnboarding(BuildContext context) async {
+    await AppPreferences().setOnboardingSeen();
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
+    );
+  }
 
   final List<PageViewModel> pages = [
     PageViewModel(
@@ -88,14 +99,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             },
             showSkipButton: false,
             skip: const Text("Prev"),
-            next: const Text("Next", style: TextStyle(color: Colors.red)),
-            done: const Text(
+            next: Text("Next", style: TextStyle(color: AppColors.accentRed)),
+            done: Text(
               "Get Started",
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: AppColors.accentRed,
+              ),
             ),
             onDone: () {
-              // Navigate to home or login
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignInScreen()));
+              completeOnboarding(context);
             },
             dotsDecorator: DotsDecorator(
               activeColor: Colors.red,

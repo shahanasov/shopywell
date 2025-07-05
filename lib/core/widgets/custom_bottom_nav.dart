@@ -8,7 +8,6 @@ class CustomBottomNav extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return BottomAppBar(
       surfaceTintColor: AppColors.softWhite,
       elevation: 8,
@@ -24,22 +23,17 @@ class CustomBottomNav extends ConsumerWidget {
               label: 'Wishlist',
               index: 1,
             ),
-
-            // to change 
-            Column(
-              children: [
-                CircleAvatar(backgroundColor: AppColors.primaryWhite,radius: 25,
-                  child: buildNavItem(ref, icon: Icons.shopping_cart, label: '', index: 2)),
-                  SizedBox(height: 5,)
-              ],
-            ),
+            SizedBox(width: 5),
+            // to change cart
+            // Column(
+            //   children: [
+            //     CircleAvatar(backgroundColor: AppColors.primaryWhite,radius: 25,
+            //       child: buildNavItem(ref, icon: Icons.shopping_cart, label: '', index: 2)),
+            //       SizedBox(height: 5,)
+            //   ],
+            // ),
             buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
-            buildNavItem(
-              ref,
-              icon: Icons.settings,
-              label: 'Setting',
-              index: 4,
-            ),
+            buildNavItem(ref, icon: Icons.settings, label: 'Setting', index: 4),
           ],
         ),
       ),
@@ -61,10 +55,15 @@ class CustomBottomNav extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: isSelected ? AppColors.accentRed : AppColors.textPrimary),
+          Icon(
+            icon,
+            color: isSelected ? AppColors.accentRed : AppColors.textPrimary,
+          ),
           Text(
             label,
-            style: TextStyle(color: isSelected ? AppColors.accentRed: AppColors.textPrimary),
+            style: TextStyle(
+              color: isSelected ? AppColors.accentRed : AppColors.textPrimary,
+            ),
           ),
         ],
       ),
