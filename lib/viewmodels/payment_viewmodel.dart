@@ -1,5 +1,3 @@
-//-----------------------------------------------
-// viewmodels/payment_viewmodel.dart
 
 import 'package:flutter/material.dart';
 import 'package:shopywell/data/models/payment_model.dart';
@@ -15,7 +13,7 @@ class PaymentViewModel extends ChangeNotifier {
     PaymentMethodModel(
       brand: 'Apple',
       maskedNumber: '********2109',
-      logoPath: 'assets/images/apple.png',
+      logoPath: 'assets/logo/apple.png',
     ),
   ];
 

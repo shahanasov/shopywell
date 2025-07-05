@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+# Secrets
+lib/core/constants/keys.dart
 
 # Symbolication related
 app.*.symbols

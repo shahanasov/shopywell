@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopywell/screens/home/widget/offer_card.dart';
 import 'package:shopywell/viewmodels/offer_viewmodel.dart';
 
 class SummerBanner extends ConsumerWidget {
