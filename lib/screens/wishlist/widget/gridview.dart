@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:shopywell/config/product_detail_provider.dart';
 import 'package:shopywell/screens/wishlist/widget/product_card.dart';
-import 'package:shopywell/viewmodels/wishlist_model.dart';
 
-class ProductGridScreen extends StatelessWidget {
+class ProductGridScreen extends ConsumerWidget {
   const ProductGridScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productListProvider);
+    final selectedSize = ref.watch(selectedSizeProvider);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MasonryGridView.count(

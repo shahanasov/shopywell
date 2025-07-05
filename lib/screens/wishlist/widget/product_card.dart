@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopywell/viewmodels/wishlist_model.dart';
+import 'package:shopywell/data/models/wishlist_model.dart';
 
 class WishListGrid extends StatelessWidget {
   final WishList product;
@@ -20,8 +20,7 @@ class WishListGrid extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
                 product.image,
-                // 'assets/images/men.jpg',
-                height: 140,
+                
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

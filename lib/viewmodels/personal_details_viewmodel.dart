@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopywell/data/models/personal_details_model.dart';
-import 'package:shopywell/domian/repositories/personal_details_repo.dart';
+import 'package:shopywell/data/repositories/personal_details_repo.dart';
 
 final personalDetailsViewModelProvider = Provider((ref) {
   return PersonalDetailsViewModel();

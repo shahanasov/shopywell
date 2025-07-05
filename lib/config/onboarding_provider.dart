@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopywell/data/services/app_preference.dart';
+import 'package:shopywell/data/repositories/app_preference.dart';
 
 
 final appPreferencesProvider = Provider<AppPreferences>((ref) {

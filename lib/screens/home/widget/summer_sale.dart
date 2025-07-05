@@ -65,30 +65,7 @@ class SummerBanner extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 20),
-          // Sponsored Text
-          const Text(
-            'Sponsored',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 12),
-
-          // Horizontal Scrollable Single OfferCard
-          SizedBox(
-            height: 180,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [OfferCard(imagePath: 'assets/images/shoeoff.png')],
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('up to 50% Off'),
-              Icon(Icons.arrow_forward_ios_outlined, size: 15),
-            ],
-          ),
+          
         ],
       ),
     );

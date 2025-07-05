@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopywell/config/image_provider.dart';
-import 'package:shopywell/data/services/image_services.dart';
+import 'package:shopywell/data/repositories/image_services.dart';
 
 class EditableAvatar extends ConsumerWidget {
   const EditableAvatar({super.key});

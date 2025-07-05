@@ -9,21 +9,21 @@ class ProductDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final product = ref.watch(productProvider);
+    final product = ref.watch(productListProvider);
 
     // final formatCurrency = NumberFormat.simpleCurrency(name: 'INR');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(product.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Text(product.subtitle),
+        Text(product[0].title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(product[0].subtitle),
         const SizedBox(height: 8),
         Row(
           children: [
             const Icon(Icons.star, color: Colors.amber, size: 20),
             const SizedBox(width: 4),
-            Text('${product.rating}', style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text('${product[0].rating}', style: const TextStyle(fontWeight: FontWeight.bold)),
             // Text('  ${NumberFormat.decimalPattern().format(product.reviews)}'),
           ],
         ),

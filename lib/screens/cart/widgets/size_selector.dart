@@ -9,7 +9,7 @@ class SizeSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final product = ref.watch(productProvider);
+    final product = ref.watch(productListProvider);
     final selectedSize = ref.watch(selectedSizeProvider);
 
     return Column(
@@ -24,7 +24,7 @@ class SizeSelector extends ConsumerWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             spacing: 8,
-            children: product.sizes!.map((size) {
+            children: product[0].sizes!.map((size) {
               final isSelected = selectedSize == size;
               return ChoiceChip(
                 disabledColor: AppColors.primaryWhite,

@@ -8,6 +8,7 @@ import 'package:shopywell/screens/home/widget/deal.dart';
 import 'package:shopywell/screens/home/widget/deals_scollabe.dart';
 import 'package:shopywell/screens/home/widget/offer_carousal.dart';
 import 'package:shopywell/screens/home/widget/search_bar.dart';
+import 'package:shopywell/screens/home/widget/sponsored_card.dart';
 import 'package:shopywell/screens/home/widget/summer_sale.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -53,6 +54,7 @@ class HomeScreen extends StatelessWidget {
 
             ProductListingPage(),
             SummerBanner(),
+            SponsoredCard()
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
-import 'package:shopywell/data/services/app_preference.dart';
+import 'package:shopywell/data/repositories/app_preference.dart';
 import 'package:shopywell/screens/auth/sign_in/sign_in_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {

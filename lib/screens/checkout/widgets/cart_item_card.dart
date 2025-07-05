@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopywell/data/models/cart_model.dart';
-import 'package:shopywell/screens/shopping_bag/shopping_bag_screen.dart';
+import 'package:shopywell/screens/place_order/place_order_screen.dart';
 
 class CartItemCard extends StatelessWidget {
   final CartItem item;
@@ -11,7 +11,7 @@ class CartItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CheckoutPage()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceOrderScreen()));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
