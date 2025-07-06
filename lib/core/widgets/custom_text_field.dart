@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: isPassword
             ? IconButton(
                 icon: Icon(
-                  obscureText ? Icons.visibility : Icons.visibility_off,
+                  obscureText ? Icons.visibility_outlined : Icons.visibility_off,
                 ),
                 onPressed: onVisibilityToggle,
               )

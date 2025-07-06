@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/config/registe_provider.dart';
+import 'package:shopywell/core/constants/colors/app_colors.dart';
 import 'package:shopywell/core/widgets/custom_text_field.dart';
 import 'package:shopywell/core/widgets/social_sign_button.dart';
 import 'package:shopywell/data/repositories/auth_services.dart';
@@ -27,7 +28,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           padding: const EdgeInsets.all(24.0),
           child: ListView(
             children: [
-              const SizedBox(height: 30),
               Text(
                 "Create an\naccount",
                 style: GoogleFonts.montserrat(
@@ -42,7 +42,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 onChanged: (val) =>
                     ref.read(regEmailProvider.notifier).state = val,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 25),
               CustomTextField(
                 icon: Icons.lock,
                 hint: "Password",
@@ -55,7 +55,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 onChanged: (val) =>
                     ref.read(regPasswordProvider.notifier).state = val,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 25),
               CustomTextField(
                 icon: Icons.lock,
                 hint: "ConfirmPassword",
@@ -87,7 +87,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   style: GoogleFonts.montserrat(fontSize: 12),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 25),
               ElevatedButton(
                 onPressed: () {
                   final email = ref.read(regEmailProvider);
@@ -107,12 +107,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   backgroundColor: Colors.red,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
                 child: Text("Create Account", style: GoogleFonts.montserrat()),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               const Center(child: Text("- OR Continue with -")),
               const SizedBox(height: 20),
               SocialButtonsRow (),
@@ -128,7 +128,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     child: const Text(
                       "Login",
                       style: TextStyle(
-                        color: Colors.red,
+                        decoration: TextDecoration.underline,
+                           decorationColor: AppColors.accentRed,
+                           decorationThickness: 2,
+                        color: AppColors.accentRed,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

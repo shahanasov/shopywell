@@ -26,39 +26,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<PageViewModel> pages = [
     PageViewModel(
-      title: "Choose Products",
+      title: 'Choose Products',
       body:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-      image: Center(
-        child: Image.asset(
-          'assets/images/fashion shop-rafiki 1.png',
-          width: 300,
-          height: 300,
-        ),
+      image: Image.asset(
+        'assets/images/fashion shop-rafiki 1.png',
+        width: 300,
+        height: 250,
       ),
+      decoration: customPageDecoration,
     ),
+
     PageViewModel(
       title: "Make Payment",
       body:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-      image: Center(
-        child: Image.asset(
-          'assets/images/Sales consulting-pana 1.png',
-          width: 300,
-          height: 300,
-        ),
+      image: Image.asset(
+        'assets/images/Sales consulting-pana 1.png',
+        width: 300,
+        height: 250,
       ),
+      decoration: customPageDecoration,
     ),
     PageViewModel(
+      decoration: customPageDecoration,
       title: "Get Your Order",
       body:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-      image: Center(
-        child: Image.asset(
-          'assets/images/Shopping bag-rafiki 1.png',
-          width: 300,
-          height: 300,
-        ),
+      image: Image.asset(
+        'assets/images/Shopping bag-rafiki 1.png',
+        width: 300,
+        height: 250,
       ),
     ),
   ];
@@ -81,13 +79,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   imageFlex: 2,
                   bodyFlex: 0,
                   titleTextStyle: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
                   ),
-                  bodyTextStyle: TextStyle(fontSize: 16, color: Colors.grey),
-                  imagePadding: EdgeInsets.only(top: 20, bottom: 0),
+                  bodyTextStyle: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  imagePadding: EdgeInsets.only(top: 170, bottom: 0),
                   titlePadding: EdgeInsets.only(bottom: 8, top: 0),
-                  bodyPadding: EdgeInsets.only(bottom: 15),
+                  bodyPadding: EdgeInsets.only(bottom: 150),
                   contentMargin: EdgeInsets.symmetric(horizontal: 16),
                 ),
               );
@@ -159,3 +161,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 }
+
+final PageDecoration customPageDecoration = const PageDecoration(
+  titleTextStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+  bodyTextStyle: TextStyle(fontSize: 16, color: Colors.grey),
+  contentMargin: EdgeInsets.symmetric(horizontal: 16),
+  imagePadding: EdgeInsets.zero, // Remove padding around image
+  titlePadding: EdgeInsets.only(top: 4, bottom: 2), // Reduced spacing
+  bodyPadding: EdgeInsets.only(bottom: 4), // Reduced spacing
+  imageAlignment: Alignment.bottomCenter, // Align image at bottom
+  bodyAlignment: Alignment.topCenter, // Align body at top
+  imageFlex: 2, // Reduced flex value
+  bodyFlex: 1,
+);

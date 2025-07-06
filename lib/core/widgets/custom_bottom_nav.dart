@@ -8,34 +8,23 @@ class CustomBottomNav extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BottomAppBar(
-      surfaceTintColor: AppColors.softWhite,
+    return  BottomAppBar(
       elevation: 8,
-      child: SizedBox(
-        height: 70,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            buildNavItem(ref, icon: Icons.home, label: 'Home', index: 0),
-            buildNavItem(
-              ref,
-              icon: Icons.favorite_border,
-              label: 'Wishlist',
-              index: 1,
-            ),
-            SizedBox(width: 5),
-            // to change cart
-            // Column(
-            //   children: [
-            //     CircleAvatar(backgroundColor: AppColors.primaryWhite,radius: 25,
-            //       child: buildNavItem(ref, icon: Icons.shopping_cart, label: '', index: 2)),
-            //       SizedBox(height: 5,)
-            //   ],
-            // ),
-            buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
-            buildNavItem(ref, icon: Icons.settings, label: 'Setting', index: 4),
-          ],
-        ),
+      // shape: const CircularNotchedRectangle(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          buildNavItem(ref, icon: Icons.home, label: 'Home', index: 0),
+          buildNavItem(
+            ref,
+            icon: Icons.favorite_border,
+            label: 'Wishlist',
+            index: 1,
+          ),
+          SizedBox(width: 5),
+          buildNavItem(ref, icon: Icons.search, label: 'Search', index: 3),
+          buildNavItem(ref, icon: Icons.settings, label: 'Setting', index: 4),
+        ],
       ),
     );
   }

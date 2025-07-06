@@ -11,7 +11,9 @@ class CartItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PlaceOrderScreen()));
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (context) => PlaceOrderScreen()));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -20,7 +22,11 @@ class CartItemCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: Colors.white,
           boxShadow: const [
-            BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
           ],
         ),
         child: Column(
@@ -34,12 +40,12 @@ class CartItemCard extends StatelessWidget {
                   child: Image.asset(
                     item.imageUrl,
                     width: 80,
-                    height: 80,
+                    height: 100,
                     fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(width: 12),
-      
+
                 // 📄 Product Details
                 Expanded(
                   child: Column(
@@ -52,16 +58,26 @@ class CartItemCard extends StatelessWidget {
                       const SizedBox(height: 6),
                       Row(
                         children: [
-                          const Text("Variations: ", style: TextStyle(fontSize: 12)),
+                          const Text(
+                            "Variations: ",
+                            style: TextStyle(fontSize: 12),
+                          ),
                           ...item.variations.map(
                             (v) => Container(
-                              margin: const EdgeInsets.only(right: 4),
-                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              
+                              margin: const EdgeInsets.only(right: 5),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 7,
+                                vertical: 3,
+                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: Colors.grey.shade200,
                               ),
-                              child: Text(v, style: const TextStyle(fontSize: 10)),
+                              child: Text(
+                                v,
+                                style: const TextStyle(fontSize: 10),
+                              ),
                             ),
                           ),
                         ],
@@ -71,39 +87,53 @@ class CartItemCard extends StatelessWidget {
                         children: [
                           const Icon(Icons.star, size: 16, color: Colors.amber),
                           const SizedBox(width: 4),
-                          Text(item.rating.toString(), style: const TextStyle(fontSize: 12)),
+                          Text(
+                            item.rating.toString(),
+                            style: const TextStyle(fontSize: 12),
+                          ),
                         ],
-                      )
+                      ),
+
+                      // 💰 Price Block
+                      Row(
+                        children: [
+                          Text(
+                            "\$ ${item.price.toStringAsFixed(2)}",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "upto ${item.discountPercent}% off",
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  "\$ ${item.originalPrice.toStringAsFixed(2)}",
+                                  style: const TextStyle(
+                                    decoration: TextDecoration.lineThrough,
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
                     ],
                   ),
-                ),
-      
-                // 💰 Price Block
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "\$ ${item.price.toStringAsFixed(2)}",
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "upto ${item.discountPercent}% off",
-                      style: const TextStyle(color: Colors.red, fontSize: 12),
-                    ),
-                    Text(
-                      "\$ ${item.originalPrice.toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),
             const SizedBox(height: 10),
+            Divider(thickness: 2),
             // Total per item
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +147,7 @@ class CartItemCard extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
 import 'package:shopywell/data/models/personal_details_model.dart';
+import 'package:shopywell/screens/auth/forgot_password/forgot_password_screen.dart';
 import 'package:shopywell/screens/checkout/checkout_screen.dart';
 import 'package:shopywell/screens/profile_page/widgets/custom_textfield.dart';
 import 'package:shopywell/screens/profile_page/widgets/profile_image.dart';
@@ -48,6 +49,26 @@ class _PersonalDetailsFormState extends ConsumerState<PersonalDetailsForm> {
             controller: passwordController,
             isPassword: true,
           ),
+           Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ForgotPasswordScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Change Password",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                           decorationColor: AppColors.accentRed,
+                           decorationThickness: 2,
+                        color: AppColors.accentRed),
+                    ),
+                  ),
+                ),
           Divider(thickness: 1),
           const Text(
             'Business Address Details',

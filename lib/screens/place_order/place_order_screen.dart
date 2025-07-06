@@ -6,7 +6,6 @@ import 'package:shopywell/screens/place_order/widgets/price_details_tile.dart';
 import 'package:shopywell/screens/shipping/shipping_screen.dart';
 import 'package:shopywell/viewmodels/place_order_viewmodel.dart';
 
-
 class PlaceOrderScreen extends ConsumerWidget {
   const PlaceOrderScreen({super.key});
 
@@ -52,11 +51,9 @@ class PlaceOrderScreen extends ConsumerWidget {
           ],
         ),
       ),
-     
+
       bottomSheet: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15)
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         height: 100,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -73,12 +70,17 @@ class PlaceOrderScreen extends ConsumerWidget {
                       fontSize: 18,
                     ),
                   ),
-                  const Text('View Details', style: TextStyle(color: Colors.red)),
+                  const Text(
+                    'View Details',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ],
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ShippingScreen()));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ShippingScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                 child: const Text("Proceed to Payment"),

@@ -2,7 +2,6 @@
 // cart_provider.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopywell/screens/place_order/place_order_screen.dart';
 
 final cartProvider = ChangeNotifierProvider((ref) => CartViewModel());
 

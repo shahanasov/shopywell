@@ -31,8 +31,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       setState(() => isLoading = true);
 
       // 🔐 Firebase login
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       // ✅ Success - navigate to GetStartedScreen
       if (mounted) {
@@ -48,9 +50,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         error = 'Wrong password provided.';
       }
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(error)));
     } finally {
       if (mounted) setState(() => isLoading = false);
     }
@@ -69,9 +71,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             child: ListView(
               children: [
                 const SizedBox(height: 30),
-                const Text(
+                Text(
                   "Welcome\nBack!",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.montserrat(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 CustomTextField(
@@ -109,23 +114,24 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: isLoading ? null : _signInWithEmailAndPassword,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.accentRed,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
                   child: isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text("Login", style: GoogleFonts.montserrat()),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 60),
                 const Center(child: Text("- OR Continue with -")),
                 const SizedBox(height: 20),
-                SocialButtonsRow (),
+                SocialButtonsRow(),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -135,12 +141,16 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => SignUpScreen()),
+                            builder: (context) => SignUpScreen(),
+                          ),
                         );
                       },
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.accentRed,
+                          decorationThickness: 2,
                           color: AppColors.accentRed,
                           fontWeight: FontWeight.bold,
                         ),

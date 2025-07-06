@@ -20,7 +20,7 @@ class AppColors {
 
   // Extra Accent Colors
   static const Color accentRed = Color.fromRGBO(235, 48, 48, 1);
-  static const Color accentPink = Color.fromRGBO(253, 110, 135, 1);
+  static const Color accentPink = Color.fromRGBO(255, 143, 163, 1);
 
   static const textPrimary = Color(0xFF1F1F1F); // Dark Text
   static const textSecondary = Color(0xFF707070); // Faded Text

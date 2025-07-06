@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shopywell/config/carousal_provider.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
+import 'package:shopywell/screens/home/widget/view_all_button.dart';
 
 class OfferCarousel extends ConsumerWidget {
   const OfferCarousel({super.key});
@@ -47,27 +48,7 @@ class OfferCarousel extends ConsumerWidget {
                       style: TextStyle(fontSize: 14, color: Colors.white),
                     ),
                     const SizedBox(height: 12),
-                    OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: AppColors.primaryWhite),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Shop Now",
-                            style: TextStyle(color: AppColors.primaryWhite),
-                          ),
-                          SizedBox(width: 4),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: AppColors.primaryWhite,
-                            size: 16,
-                          ),
-                        ],
-                      ),
-                    ),
+                    ViewAllButton(text: 'Shop Now',)
                   ],
                 ),
               ),
@@ -126,7 +107,7 @@ class OfferCarousel extends ConsumerWidget {
               height: isActive ? 10 : 8,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isActive ? Colors.pinkAccent : Colors.grey[300],
+                color: isActive ? AppColors.accentPink : Colors.grey[300],
               ),
             );
           }),

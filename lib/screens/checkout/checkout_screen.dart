@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopywell/core/constants/colors/app_colors.dart';
 import 'package:shopywell/data/models/cart_model.dart';
 import 'package:shopywell/screens/checkout/widgets/cart_item_card.dart';
+import 'package:shopywell/screens/profile_page/profile_create_screen.dart';
 
 class CheckoutScreen extends ConsumerWidget {
   const CheckoutScreen({super.key});
@@ -83,7 +84,13 @@ class CheckoutScreen extends ConsumerWidget {
                       ),
                       child: Center(
                         child: IconButton.outlined(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProfileCreateScreen(),
+                              ),
+                            );
+                          },
                           icon: Icon(Icons.add),
                         ),
                       ),

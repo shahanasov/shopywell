@@ -13,7 +13,7 @@ class SearchBarWidget extends StatelessWidget {
           prefixIcon: Icon(Icons.search),
           suffixIcon: Icon(Icons.mic_none),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: const Color.fromARGB(255, 247, 244, 244),
           contentPadding: EdgeInsets.symmetric(vertical: 12),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
