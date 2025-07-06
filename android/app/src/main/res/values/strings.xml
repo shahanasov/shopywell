@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ShopyWell</string> <!-- ✅ Fix for app_name -->
+    
+    <!-- Replace with your actual Facebook App ID -->
+    <string name="facebook_app_id">1099107978776450</string>
+    <string name="fb_login_protocol_scheme">fb1099107978776450</string>
+    <string name="facebook_client_token">847b749773b78b8e373f9a46ed34a685</string>
+</resources>
