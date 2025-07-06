@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "35346559617-22r66n2cq9mg5gbojub42m761jt12n9m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopywell",
+            "certificate_hash": "551edffd420f47c6eddecb66cf4e6525d9a1b247"
+          }
+        },
+        {
           "client_id": "35346559617-6a2tso2232ga98ob4mgeemv2a301ccku.apps.googleusercontent.com",
           "client_type": 3
         }
