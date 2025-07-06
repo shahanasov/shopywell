@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:shopywell/screens/home/root_screen.dart';
+import 'package:shopywell/screens/onboarding/get_started_screen.dart';
 
 final signUpProvider = Provider((ref) => SignUpServices(ref));
 
@@ -90,14 +92,10 @@ class SignUpServices {
 
   Future<void> signInWithGoogle(BuildContext context) async {
     final googleSignIn = GoogleSignIn.instance;
-    bool isInitialized = false;
 
     try {
-      // 🔧 Initialize once (required in v7.x)
-      if (!isInitialized) {
-        await googleSignIn.initialize();
-        isInitialized = true;
-      }
+      // 🔧 Initialize Google Sign-In
+      await googleSignIn.initialize();
 
       // ✋ Start interactive Google sign-in
       final account = await googleSignIn.authenticate(scopeHint: ['email']);
@@ -117,6 +115,16 @@ class SignUpServices {
         // accessToken: accessToken,
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
+      
+      // ✅ Success - navigate to home screen
+      if (context.mounted) {
+        // Add a small delay to ensure Firebase auth state is updated
+        await Future.delayed(const Duration(milliseconds: 500));
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const GetStartedScreen()),
+          (route) => false,
+        );
+      }
     } on GoogleSignInException catch (e) {
       final isCanceled = e.code.toString().contains('canceled');
       ScaffoldMessenger.of(context).showSnackBar(
@@ -154,9 +162,15 @@ class SignUpServices {
 
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Facebook sign-in successful")),
-        );
+        // ✅ Success - navigate to home screen
+        if (context.mounted) {
+          // Add a small delay to ensure Firebase auth state is updated
+          await Future.delayed(const Duration(milliseconds: 500));
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const RootScreen()),
+            (route) => false,
+          );
+        }
       } else if (result.status == LoginStatus.cancelled) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Facebook sign-in cancelled")),

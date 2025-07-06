@@ -9,6 +9,7 @@ import 'package:shopywell/core/widgets/social_sign_button.dart';
 import 'package:shopywell/screens/auth/forgot_password/forgot_password_screen.dart';
 import 'package:shopywell/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:shopywell/screens/onboarding/get_started_screen.dart';
+import 'package:shopywell/screens/home/root_screen.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
@@ -36,10 +37,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         password: password,
       );
 
-      // ✅ Success - navigate to GetStartedScreen
+      // ✅ Success - navigate to home screen
       if (mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => GetStartedScreen()),
+        // Add a small delay to ensure Firebase auth state is updated
+        await Future.delayed(const Duration(milliseconds: 500));
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const RootScreen()),
+          (route) => false,
         );
       }
     } on FirebaseAuthException catch (e) {
