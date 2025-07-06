@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shopywell/config/registe_provider.dart';
 import 'package:shopywell/core/widgets/custom_text_field.dart';
 import 'package:shopywell/core/widgets/social_sign_button.dart';
-import 'package:shopywell/viewmodels/auth_viewmodel.dart';
+import 'package:shopywell/data/repositories/auth_services.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
@@ -94,7 +94,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   final password = ref.read(regPasswordProvider);
                   final confirm = ref.read(regConfirmPasswordProvider);
 
-                  ref.read(signUpViewModelProvider).signUp(
+                  ref
+                      .read(signUpProvider)
+                      .signUp(
                         context: context,
                         email: email,
                         password: password,
@@ -113,7 +115,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               const SizedBox(height: 20),
               const Center(child: Text("- OR Continue with -")),
               const SizedBox(height: 20),
-              socialbuttons(),
+              SocialButtonsRow (),
               const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

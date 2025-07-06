@@ -1,4 +1,4 @@
-// models/payment_method_model.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopywell/config/payment_provider.dart';
@@ -6,8 +6,8 @@ import 'package:shopywell/core/constants/colors/app_colors.dart';
 import 'package:shopywell/data/repositories/payment_services.dart';
 import 'package:shopywell/screens/shipping/widgets/option_tile.dart';
 
-//-----------------------------------------------
-// views/checkout_screen.dart
+
+
 class ShippingScreen extends ConsumerStatefulWidget {
   const ShippingScreen({super.key});
 

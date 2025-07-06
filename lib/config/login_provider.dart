@@ -23,3 +23,5 @@ final authStateProvider = StreamProvider<User?>((ref) {
 final firestoreProvider = Provider<FirebaseFirestore>((ref) {
   return FirebaseFirestore.instance;
 });
+
+

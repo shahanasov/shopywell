@@ -125,7 +125,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 const SizedBox(height: 20),
                 const Center(child: Text("- OR Continue with -")),
                 const SizedBox(height: 20),
-                socialbuttons(),
+                SocialButtonsRow (),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

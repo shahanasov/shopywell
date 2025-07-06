@@ -54,9 +54,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           ),
         ),
       ),
-      error: (e, _) => Scaffold(
-        body: Center(child: Text("Error: $e")),
-      ),
+      error: (e, _) => Scaffold(body: Center(child: Text("Error: $e"))),
       data: (isFirstTime) {
         if (isFirstTime) {
           return const OnboardingScreen();
@@ -64,18 +62,16 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
         final authState = ref.watch(authStateProvider);
         return authState.when(
-          loading: () => const  Scaffold(
-        body: Center(
-          child: Image(
-            image: AssetImage('assets/logo/shopywelllogo.png'),
-            width: 202,
-            height: 66,
+          loading: () => const Scaffold(
+            body: Center(
+              child: Image(
+                image: AssetImage('assets/logo/shopywelllogo.png'),
+                width: 202,
+                height: 66,
+              ),
+            ),
           ),
-        ),
-      ),
-          error: (e, _) => Scaffold(
-            body: Center(child: Text("Error: $e")),
-          ),
+          error: (e, _) => Scaffold(body: Center(child: Text("Error: $e"))),
           data: (user) {
             if (user != null) {
               return const GetStartedScreen();
